@@ -44,15 +44,10 @@ class CustomLoginController extends Controller
             'password' => 'required',
         ]);
         $user = User::where('email' , '=', $request->email)->first();
-                // dd($user);
 
         if($user){
-        
             if(Hash::check($request->password , $user->password)){
                 Session::put('loginId', $user->id);
-                // $request->session()->put('loginID', $user->id);
-
-                // \Log::error('User failed: ' ,);
                 return redirect('viewpage');
             }
             else{
